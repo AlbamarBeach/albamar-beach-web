@@ -2,7 +2,7 @@
 const SEASONS = [
   { name: 'Temporada alta', months: [6, 7, 8], price: 135, minNights: 6 },
   { name: 'Temporada media', months: [9, 10], price: 80, minNights: 6 },
-  { name: 'Temporada baja', months: [11, 12, 1, 2, 3, 4, 5], price: 90, minNights: 2 },
+  { name: 'Temporada baja', months: [11, 12, 1, 2, 3, 4, 5], price: 70, minNights: 4 },
 ];
 
 function getSeason(date) {
