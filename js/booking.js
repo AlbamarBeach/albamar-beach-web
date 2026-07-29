@@ -146,33 +146,43 @@ document.addEventListener('DOMContentLoaded', async () => {
     updateSummary();
   }
 
+  const DEPOSIT_RATIO = 0.25;
+
+  function currentTotal() {
+    if (!checkin || !checkout) return 0;
+    const nightsCount = nightsBetween(checkin, checkout);
+    const parking = document.getElementById('parking').checked;
+    const pets = parseInt(document.getElementById('pets').value, 10);
+    const stayPrice = priceForStay(checkin, checkout);
+    const parkingPrice = parking ? nightsCount * 10 : 0;
+    const petsPrice = pets * nightsCount * 10;
+    return stayPrice + parkingPrice + petsPrice;
+  }
+
   function updateSummary() {
     const inEl = document.getElementById('summaryCheckin');
     const outEl = document.getElementById('summaryCheckout');
     const nightsEl = document.getElementById('summaryNights');
     const priceEl = document.getElementById('summaryPrice');
     const minNightsNote = document.getElementById('minNightsNote');
+    const depositNote = document.getElementById('depositNote');
     const opts = { day: '2-digit', month: 'short', year: 'numeric' };
 
     inEl.textContent = checkin ? checkin.toLocaleDateString('es-ES', opts) : '—';
     outEl.textContent = checkout ? checkout.toLocaleDateString('es-ES', opts) : '—';
 
     if (checkin && checkout) {
-      const nightsCount = nightsBetween(checkin, checkout);
-      nightsEl.textContent = nightsCount;
-
-      const parking = document.getElementById('parking').checked;
-      const pets = parseInt(document.getElementById('pets').value, 10);
-      const stayPrice = priceForStay(checkin, checkout);
-      const parkingPrice = parking ? nightsCount * 10 : 0;
-      const petsPrice = pets * nightsCount * 10;
-      priceEl.textContent = `${stayPrice + parkingPrice + petsPrice} €`;
+      nightsEl.textContent = nightsBetween(checkin, checkout);
+      const total = currentTotal();
+      priceEl.textContent = `${total} €`;
       minNightsNote.textContent = '';
+      depositNote.textContent = `Se cobra ahora el depósito: ${Math.round(total * DEPOSIT_RATIO)} € (25%). Resto (${total - Math.round(total * DEPOSIT_RATIO)} €) al llegar.`;
     } else {
       nightsEl.textContent = '—';
       priceEl.textContent = '—';
       const season = checkin ? getSeason(checkin) : null;
       minNightsNote.textContent = season ? `Estancia mínima en ${season.name.toLowerCase()}: ${season.minNights} noches.` : '';
+      depositNote.textContent = '';
     }
   }
 
@@ -197,7 +207,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const name = document.getElementById('name').value.trim();
     const notes = document.getElementById('notes').value.trim();
     const nightsCount = nightsBetween(checkin, checkout);
-    const total = priceForStay(checkin, checkout) + (parking ? nightsCount * 10 : 0) + (pets * nightsCount * 10);
+    const total = currentTotal();
 
     let msg = `Hola, quisiera reservar el Apartamento Albamar Beach.\n`;
     msg += `Entrada: ${checkin.toLocaleDateString('es-ES', opts)}\n`;
@@ -227,6 +237,48 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   document.getElementById('parking').addEventListener('change', updateSummary);
   document.getElementById('pets').addEventListener('change', updateSummary);
+
+  document.getElementById('payOnline').addEventListener('click', async () => {
+    if (!checkin || !checkout) {
+      alert('Selecciona primero la fecha de entrada y salida en el calendario.');
+      return;
+    }
+    const payBtn = document.getElementById('payOnline');
+    const guests = document.getElementById('guests').value;
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const total = currentTotal();
+
+    payBtn.disabled = true;
+    payBtn.textContent = 'Conectando con el pago seguro...';
+
+    try {
+      const res = await fetch('/.netlify/functions/create-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          checkin: fmt(checkin),
+          checkout: fmt(checkout),
+          nights: nightsBetween(checkin, checkout),
+          guests,
+          total,
+          name,
+          email,
+        }),
+      });
+      if (!res.ok) throw new Error('No se pudo iniciar el pago');
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        throw new Error(data.error || 'Respuesta inválida');
+      }
+    } catch (err) {
+      alert('No se pudo conectar con el pago online ahora mismo. Prueba a solicitar la reserva por WhatsApp o email mientras lo revisamos.');
+      payBtn.disabled = false;
+      payBtn.textContent = 'Pagar depósito y reservar';
+    }
+  });
 
   renderCalendar();
 });

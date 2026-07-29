@@ -95,23 +95,24 @@
         </div>
 
         <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Para el recibo y la confirmación">
+        </div>
+
+        <div class="field">
           <label for="notes">Comentarios (opcional)</label>
           <textarea id="notes" placeholder="Hora de llegada aproximada, peticiones especiales..."></textarea>
         </div>
 
-        <button class="btn btn-primary" id="submitWhatsapp" style="width:100%; margin-bottom:10px;">Solicitar por WhatsApp</button>
-        <button class="btn btn-outline" id="submitEmail" style="width:100%; color:var(--sea-deep); border-color:var(--sea-deep);">Solicitar por email</button>
+        <button class="btn btn-primary" id="payOnline" style="width:100%; margin-bottom:10px;">Pagar depósito y reservar</button>
+        <div id="depositNote" style="font-size:0.82rem; color:var(--ink-soft); text-align:center; margin-bottom:16px;"></div>
+
+        <button class="btn btn-outline" id="submitWhatsapp" style="width:100%; margin-bottom:10px; color:var(--sea-deep); border-color:var(--sea-deep);">O solicitar por WhatsApp</button>
+        <button class="btn btn-outline" id="submitEmail" style="width:100%; color:var(--sea-deep); border-color:var(--sea-deep);">O solicitar por email</button>
 
         <div class="note-box">
-          Esto es una <strong>solicitud de reserva</strong>, no un pago. Te confirmaremos disponibilidad y forma de pago por WhatsApp o email en breve.
+          Al pagar el depósito (25% del total) tu reserva queda confirmada al instante. El resto se paga al llegar al apartamento.
         </div>
-
-        <!--
-          Hueco reservado para la pasarela de pago (Stripe, Redsys, PayPal...).
-          Cuando esté lista: sustituye el botón de abajo por el checkout real,
-          usando el precio de #summaryPrice como importe a cobrar.
-        -->
-        <button class="btn btn-outline" id="payOnline" disabled style="width:100%; margin-top:10px; opacity:0.5; cursor:not-allowed; color:var(--sea-deep); border-color:var(--sea-deep);" title="Próximamente">Pagar y confirmar reserva (próximamente)</button>
       </div>
     </div>
   </div>

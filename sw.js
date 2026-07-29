@@ -1,10 +1,12 @@
-const CACHE_NAME = 'albamar-beach-v1';
+const CACHE_NAME = 'albamar-beach-v2';
 const CORE_ASSETS = [
   'index.html',
   'apartamento.html',
   'galeria.html',
   'reservas.html',
   'contacto.html',
+  'pago-exitoso.html',
+  'pago-cancelado.html',
   'css/style.css',
   'js/main.js',
   'js/gallery.js',
@@ -35,6 +37,7 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin || event.request.method !== 'GET') return;
+  if (url.pathname.startsWith('/.netlify/functions/')) return; // nunca cachear pagos/disponibilidad
 
   event.respondWith(
     caches.match(event.request).then((cached) => {

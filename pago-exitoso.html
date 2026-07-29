@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reserva confirmada — Albamar Beach</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="css/style.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0f5c73">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="icon" href="icons/icon-192.png">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="nav-bar">
+    <a href="index.html" class="brand"><span class="wave">~</span> Albamar Beach</a>
+    <button class="nav-toggle" aria-label="Abrir menú">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="apartamento.html">El apartamento</a></li>
+      <li><a href="galeria.html">Galería</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="reservas.html" class="nav-cta">Reservar</a></li>
+    </ul>
+  </div>
+</header>
+
+<section>
+  <div class="container" style="max-width:600px; text-align:center;">
+    <div class="section-head">
+      <span class="eyebrow">Pago recibido</span>
+      <h1>¡Reserva confirmada!</h1>
+    </div>
+    <div id="status" class="note-box" style="text-align:left;">Comprobando el pago...</div>
+    <p style="margin-top:24px;">Te hemos enviado un recibo por email. Si tienes cualquier duda, escríbenos por WhatsApp o email — estaremos encantados de ayudarte.</p>
+    <div class="hero-actions" style="justify-content:center; margin-top:20px;">
+      <a href="https://wa.me/34672504141" class="btn btn-primary">Escribir por WhatsApp</a>
+      <a href="index.html" class="btn btn-outline" style="color:var(--sea-deep); border-color:var(--sea-deep);">Volver al inicio</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">&copy; 2026 Apartamento Albamar Beach · Calpe</div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+(async function () {
+  const params = new URLSearchParams(window.location.search);
+  const sessionId = params.get('session_id');
+  const statusEl = document.getElementById('status');
+  if (!sessionId) {
+    statusEl.textContent = 'No se ha encontrado información del pago.';
+    return;
+  }
+  try {
+    const res = await fetch(`/.netlify/functions/get-session?session_id=${encodeURIComponent(sessionId)}`);
+    const data = await res.json();
+    if (data.paid) {
+      const m = data.metadata || {};
+      statusEl.innerHTML = `Depósito de <strong>${data.amount} €</strong> recibido correctamente.<br>` +
+        `Entrada: ${m.checkin || ''} · Salida: ${m.checkout || ''} · ${m.nights || ''} noches · ${m.guests || ''} huéspedes.`;
+    } else {
+      statusEl.textContent = 'El pago aún no se ha confirmado. Si el cargo aparece en tu banco, contáctanos y lo revisamos.';
+    }
+  } catch (err) {
+    statusEl.textContent = 'No se pudo verificar el pago automáticamente. Si el cargo se ha realizado, tu reserva es válida — contáctanos si tienes dudas.';
+  }
+})();
+</script>
+</body>
+</html>
