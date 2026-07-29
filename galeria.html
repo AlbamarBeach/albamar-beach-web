@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galería — Albamar Beach, Calpe</title>
+<meta name="description" content="Galería de fotos del Apartamento Albamar Beach en Calpe: habitaciones, salón, terraza, baño, piscina comunitaria y playa.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0f5c73">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="icon" href="icons/icon-192.png">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="nav-bar">
+    <a href="index.html" class="brand"><span class="wave">~</span> Albamar Beach</a>
+    <button class="nav-toggle" aria-label="Abrir menú">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="apartamento.html">El apartamento</a></li>
+      <li><a href="galeria.html" class="active">Galería</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="reservas.html" class="nav-cta">Reservar</a></li>
+    </ul>
+  </div>
+</header>
+
+<section style="padding-bottom: 20px;">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Fotos</span>
+      <h1>Galería</h1>
+      <p>Un vistazo a cada rincón del Apartamento Albamar Beach.</p>
+    </div>
+
+    <div class="gallery-grid" id="gallery">
+      <div class="photo-frame" data-label="Playa junto al Peñón de Ifach" data-caption="Playa junto al Peñón de Ifach">
+        <img src="images/playa.jpg" alt="Playa junto al Peñón de Ifach" onerror="this.parentElement.classList.add('img-missing')">
+      </div>
+      <div class="photo-frame" data-label="Piscina comunitaria" data-caption="Piscina comunitaria">
+        <img src="images/piscina.jpg" alt="Piscina comunitaria" onerror="this.parentElement.classList.add('img-missing')">
+      </div>
+      <div class="photo-frame" data-label="Salón con sofá cama" data-caption="Salón con sofá cama">
+        <img src="images/salon.jpg" alt="Salón con sofá cama" onerror="this.parentElement.classList.add('img-missing')">
+      </div>
+      <div class="photo-frame" data-label="Comedor" data-caption="Comedor">
+        <img src="images/comedor.jpg" alt="Comedor" onerror="this.parentElement.classList.add('img-missing')">
+      </div>
+      <div class="photo-frame" data-label="Habitación con cama doble" data-caption="Habitación con cama doble">
+        <img src="images/habitacion-doble.jpg" alt="Habitación con cama doble" onerror="this.parentElement.classList.add('img-missing')">
+      </div>
+      <div class="photo-frame" data-label="Habitación con dos camas individuales" data-caption="Habitación con dos camas individuales">
+        <img src="images/habitacion-individual.jpg" alt="Habitación con dos camas individuales" onerror="this.parentElement.classList.add('img-missing')">
+      </div>
+      <div class="photo-frame" data-label="Baño" data-caption="Baño">
+        <img src="images/bano.jpg" alt="Baño" onerror="this.parentElement.classList.add('img-missing')">
+      </div>
+      <div class="photo-frame" data-label="Terraza" data-caption="Terraza">
+        <img src="images/terraza.jpg" alt="Terraza" onerror="this.parentElement.classList.add('img-missing')">
+      </div>
+      <div class="photo-frame" data-label="Rincón de la terraza" data-caption="Rincón de la terraza">
+        <img src="images/terraza-rincon.jpg" alt="Rincón de la terraza" onerror="this.parentElement.classList.add('img-missing')">
+      </div>
+      <div class="photo-frame" data-label="Recibidor" data-caption="Recibidor">
+        <img src="images/pasillo.jpg" alt="Recibidor" onerror="this.parentElement.classList.add('img-missing')">
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">&times;</button>
+  <button class="lightbox-nav lightbox-prev" id="lightboxPrev">&#8249;</button>
+  <img src="" alt="" id="lightboxImg">
+  <button class="lightbox-nav lightbox-next" id="lightboxNext">&#8250;</button>
+  <div class="lightbox-caption" id="lightboxCaption"></div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>Albamar Beach</h4>
+        <p>Apartamento turístico a 100 m de la playa, en el corazón de Calpe.</p>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <p>Calle Pintor Sorolla, 19<br>03710 Calpe, Alicante</p>
+        <p><a href="tel:+34672504141">672 504 141</a><br><a href="mailto:Albamarcalpe19@gmail.com">Albamarcalpe19@gmail.com</a></p>
+      </div>
+      <div>
+        <h4>Explora</h4>
+        <p><a href="apartamento.html">El apartamento</a><br><a href="galeria.html">Galería</a><br><a href="reservas.html">Reservas</a><br><a href="contacto.html">Contacto</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 Apartamento Albamar Beach · Calpe</div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/gallery.js"></script>
+</body>
+</html>

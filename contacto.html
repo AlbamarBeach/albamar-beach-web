@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacto — Albamar Beach, Calpe</title>
+<meta name="description" content="Contacta con el Apartamento Albamar Beach en Calpe: dirección, teléfono, email y ubicación en el mapa.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0f5c73">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="icon" href="icons/icon-192.png">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="nav-bar">
+    <a href="index.html" class="brand"><span class="wave">~</span> Albamar Beach</a>
+    <button class="nav-toggle" aria-label="Abrir menú">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="apartamento.html">El apartamento</a></li>
+      <li><a href="galeria.html">Galería</a></li>
+      <li><a href="contacto.html" class="active">Contacto</a></li>
+      <li><a href="reservas.html" class="nav-cta">Reservar</a></li>
+    </ul>
+  </div>
+</header>
+
+<section style="padding-bottom: 20px;">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Escríbenos</span>
+      <h1>Contacto</h1>
+      <p>¿Tienes dudas antes de reservar? Estamos encantados de ayudarte.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div>
+        <h3>Datos de contacto</h3>
+        <p>
+          <strong>Dirección</strong><br>
+          Calle Pintor Sorolla, 19<br>
+          03710 Calpe, Alicante
+        </p>
+        <p>
+          <strong>Teléfono</strong><br>
+          <a href="tel:+34672504141">672 504 141</a>
+        </p>
+        <p>
+          <strong>Email</strong><br>
+          <a href="mailto:Albamarcalpe19@gmail.com">Albamarcalpe19@gmail.com</a>
+        </p>
+        <a href="https://wa.me/34672504141" class="btn btn-primary" style="margin-top:10px;">Escribir por WhatsApp</a>
+
+        <h3 style="margin-top:36px;">Cómo llegar</h3>
+        <div class="map-frame">
+          <iframe
+            src="https://www.google.com/maps?q=Calle+Pintor+Sorolla+19,+03710+Calpe,+Alicante&output=embed"
+            allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            title="Ubicación Apartamento Albamar Beach"></iframe>
+        </div>
+      </div>
+
+      <div>
+        <h3>Envíanos un mensaje</h3>
+        <form id="contactForm">
+          <div class="field">
+            <label for="cf-name">Nombre</label>
+            <input type="text" id="cf-name" required>
+          </div>
+          <div class="field">
+            <label for="cf-email">Tu email</label>
+            <input type="email" id="cf-email" required>
+          </div>
+          <div class="field">
+            <label for="cf-message">Mensaje</label>
+            <textarea id="cf-message" required placeholder="Cuéntanos qué necesitas..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;">Enviar mensaje</button>
+        </form>
+        <div class="note-box">
+          Al enviar se abrirá tu aplicación de correo con el mensaje ya redactado, listo para enviar a Albamarcalpe19@gmail.com.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>Albamar Beach</h4>
+        <p>Apartamento turístico a 100 m de la playa, en el corazón de Calpe.</p>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <p>Calle Pintor Sorolla, 19<br>03710 Calpe, Alicante</p>
+        <p><a href="tel:+34672504141">672 504 141</a><br><a href="mailto:Albamarcalpe19@gmail.com">Albamarcalpe19@gmail.com</a></p>
+      </div>
+      <div>
+        <h4>Explora</h4>
+        <p><a href="apartamento.html">El apartamento</a><br><a href="galeria.html">Galería</a><br><a href="reservas.html">Reservas</a><br><a href="contacto.html">Contacto</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 Apartamento Albamar Beach · Calpe</div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+document.getElementById('contactForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+  const name = document.getElementById('cf-name').value.trim();
+  const email = document.getElementById('cf-email').value.trim();
+  const message = document.getElementById('cf-message').value.trim();
+  const subject = encodeURIComponent('Mensaje desde la web — Albamar Beach');
+  const body = encodeURIComponent(`Nombre: ${name}\nEmail: ${email}\n\n${message}`);
+  window.location.href = `mailto:Albamarcalpe19@gmail.com?subject=${subject}&body=${body}`;
+});
+</script>
+</body>
+</html>

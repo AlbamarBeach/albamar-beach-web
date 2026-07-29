@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reservas — Albamar Beach, Calpe</title>
+<meta name="description" content="Consulta disponibilidad y solicita tu reserva en el Apartamento Albamar Beach, Calpe.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0f5c73">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="icon" href="icons/icon-192.png">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="nav-bar">
+    <a href="index.html" class="brand"><span class="wave">~</span> Albamar Beach</a>
+    <button class="nav-toggle" aria-label="Abrir menú">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="apartamento.html">El apartamento</a></li>
+      <li><a href="galeria.html">Galería</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="reservas.html" class="nav-cta active">Reservar</a></li>
+    </ul>
+  </div>
+</header>
+
+<section style="padding-bottom: 20px;">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Disponibilidad</span>
+      <h1>Reserva tu estancia</h1>
+      <p>Elige tus fechas de entrada y salida. Las fechas en rojo ya están ocupadas.</p>
+    </div>
+
+    <div class="booking-layout">
+      <div class="calendar-card">
+        <div class="calendar-header">
+          <button id="prevMonth" aria-label="Mes anterior">&#8249;</button>
+          <h3 id="monthLabel">Mes</h3>
+          <button id="nextMonth" aria-label="Mes siguiente">&#8250;</button>
+        </div>
+        <div class="calendar-grid" id="calendarGrid"></div>
+        <div class="calendar-legend">
+          <span><span class="legend-swatch blocked"></span> Ocupado</span>
+          <span><span class="legend-swatch selected"></span> Seleccionado</span>
+        </div>
+        <div class="calendar-legend" style="margin-top:8px;">
+          <span>Jun-Ago: 135 €/noche (mín. 6 noches)</span>
+          <span>Sep-Oct: 100 €/noche (mín. 2 noches)</span>
+          <span>Nov-May: 90 €/noche (mín. 2 noches)</span>
+        </div>
+        <div class="note-box" id="calendarStatus">Cargando disponibilidad...</div>
+      </div>
+
+      <div class="booking-summary">
+        <h3>Tu solicitud</h3>
+        <div class="summary-row"><span>Entrada</span><span id="summaryCheckin">—</span></div>
+        <div class="summary-row"><span>Salida</span><span id="summaryCheckout">—</span></div>
+        <div class="summary-row"><span>Noches</span><span id="summaryNights">—</span></div>
+        <div class="summary-row"><span>Precio total</span><span id="summaryPrice">—</span></div>
+        <div id="minNightsNote" style="font-size:0.82rem; color:var(--terracotta); margin-top:6px;"></div>
+
+        <div class="field" style="margin-top:20px;">
+          <label for="guests">Número de huéspedes</label>
+          <select id="guests">
+            <option>1</option>
+            <option>2</option>
+            <option selected>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label><input type="checkbox" id="parking"> Necesito plaza de parking (+10 €/día)</label>
+        </div>
+
+        <div class="field">
+          <label for="pets">Mascotas (+10 €/día por mascota)</label>
+          <select id="pets">
+            <option value="0" selected>0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="name">Nombre</label>
+          <input type="text" id="name" placeholder="Tu nombre">
+        </div>
+
+        <div class="field">
+          <label for="notes">Comentarios (opcional)</label>
+          <textarea id="notes" placeholder="Hora de llegada aproximada, peticiones especiales..."></textarea>
+        </div>
+
+        <button class="btn btn-primary" id="submitWhatsapp" style="width:100%; margin-bottom:10px;">Solicitar por WhatsApp</button>
+        <button class="btn btn-outline" id="submitEmail" style="width:100%; color:var(--sea-deep); border-color:var(--sea-deep);">Solicitar por email</button>
+
+        <div class="note-box">
+          Esto es una <strong>solicitud de reserva</strong>, no un pago. Te confirmaremos disponibilidad y forma de pago por WhatsApp o email en breve.
+        </div>
+
+        <!--
+          Hueco reservado para la pasarela de pago (Stripe, Redsys, PayPal...).
+          Cuando esté lista: sustituye el botón de abajo por el checkout real,
+          usando el precio de #summaryPrice como importe a cobrar.
+        -->
+        <button class="btn btn-outline" id="payOnline" disabled style="width:100%; margin-top:10px; opacity:0.5; cursor:not-allowed; color:var(--sea-deep); border-color:var(--sea-deep);" title="Próximamente">Pagar y confirmar reserva (próximamente)</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>Albamar Beach</h4>
+        <p>Apartamento turístico a 100 m de la playa, en el corazón de Calpe.</p>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <p>Calle Pintor Sorolla, 19<br>03710 Calpe, Alicante</p>
+        <p><a href="tel:+34672504141">672 504 141</a><br><a href="mailto:Albamarcalpe19@gmail.com">Albamarcalpe19@gmail.com</a></p>
+      </div>
+      <div>
+        <h4>Explora</h4>
+        <p><a href="apartamento.html">El apartamento</a><br><a href="galeria.html">Galería</a><br><a href="reservas.html">Reservas</a><br><a href="contacto.html">Contacto</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 Apartamento Albamar Beach · Calpe</div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/ical-sync.js"></script>
+<script src="js/booking.js"></script>
+</body>
+</html>
