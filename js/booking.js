@@ -1,7 +1,7 @@
 // Tarifas por temporada. Ajusta aquí si cambian los precios o los meses.
 const SEASONS = [
   { name: 'Temporada alta', months: [6, 7, 8], price: 135, minNights: 6 },
-  { name: 'Temporada media', months: [9, 10], price: 100, minNights: 2 },
+  { name: 'Temporada media', months: [9, 10], price: 80, minNights: 6 },
   { name: 'Temporada baja', months: [11, 12, 1, 2, 3, 4, 5], price: 90, minNights: 2 },
 ];
 
