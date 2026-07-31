@@ -38,7 +38,7 @@ exports.handler = async (event) => {
             unit_amount: depositCents,
             product_data: {
               name: 'Depósito de reserva — Apartamento Albamar Beach',
-              description: `Entrada ${checkin} · Salida ${checkout} · ${nights} noches · ${guests} huéspedes. Depósito del 25% (resto se paga al llegar).`,
+              description: `Entrada ${checkin} · Salida ${checkout} · ${nights} noches · ${guests} huéspedes. Depósito del 25% (resto en efectivo o transferencia al llegar, sin datáfono).`,
             },
           },
           quantity: 1,

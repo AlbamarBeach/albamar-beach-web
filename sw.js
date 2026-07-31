@@ -1,4 +1,4 @@
-const CACHE_NAME = 'albamar-beach-v4';
+const CACHE_NAME = 'albamar-beach-v5';
 const CORE_ASSETS = [
   'index.html',
   'apartamento.html',

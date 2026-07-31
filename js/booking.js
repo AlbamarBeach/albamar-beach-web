@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const total = currentTotal();
       priceEl.textContent = `${total} €`;
       minNightsNote.textContent = '';
-      depositNote.textContent = `Se cobra ahora el depósito: ${Math.round(total * DEPOSIT_RATIO)} € (25%). Resto (${total - Math.round(total * DEPOSIT_RATIO)} €) al llegar.`;
+      depositNote.textContent = `Se cobra ahora el depósito: ${Math.round(total * DEPOSIT_RATIO)} € (25%). Resto (${total - Math.round(total * DEPOSIT_RATIO)} €) al llegar, en efectivo o transferencia — no hay datáfono.`;
     } else {
       nightsEl.textContent = '—';
       priceEl.textContent = '—';
